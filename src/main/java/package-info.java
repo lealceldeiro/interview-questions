@@ -1,6 +1,6 @@
 /**
  * This package contains the Main class, from where all the exercises my be ran by providing the JVM with an argument:
- * a number from 1 to 6, indicating the exercise.
+ * a number from 1 to 7, indicating the exercise.
  * <p> The exercise are selected as follow:
  *     <ul>
  *         <li>1: Person filtering</li>
@@ -9,10 +9,11 @@
  *         <li>4: Get Number Of Groups Of Custom Size In Sequence</li>
  *         <li>5: Can The Wall Be Built</li>
  *         <li>6: Most CommonWord</li>
+ *         <li>7: Tree height</li>
  *     </ul>
  * </p
  *
  * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
- * @version 0.1
+ * @version 0.2
  */
 package main.java;

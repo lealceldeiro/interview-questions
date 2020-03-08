@@ -2,6 +2,7 @@ package main.java;
 
 import main.java.excersices.personfilter.Person;
 import main.java.excersices.personfilter.PersonController;
+import main.java.excersices.treeheight.Node;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +15,7 @@ import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfG
 import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
 import static main.java.excersices.wall.WallController.canWeBuildAWallOfSizeFrom;
 import static main.java.excersices.commonword.CommonWordController.findMostCommonWordIn;
+import static main.java.excersices.treeheight.TreeController.getTreeHeight;
 
 /**
  * This class is only the program runner. To see the implementation logic for each problem see the other classes in each
@@ -54,8 +56,11 @@ public final class Main {
             case 5:
                 runWallProblem();
                 break;
-            default:
+            case 6:
                 runMostCommonWordProblem();
+                break;
+            default:
+                runTreeHeightProblem();
         }
     }
 
@@ -172,6 +177,22 @@ public final class Main {
         out.println("'a b', 'x y' (expected a): " + findMostCommonWordIn("a b", "x y"));
     }
 
+    private static void runTreeHeightProblem() {
+        Node<String> root = null;
+        out.println("null (expected -1): " + getTreeHeight(root));
+
+        root = new Node<>("");
+        out.println("root with no children (expected 0): " + getTreeHeight(root));
+
+        root = new Node<>("", new Node<>(""), null);
+        out.println("root with a left child (expected 1): " + getTreeHeight(root));
+
+        root = new Node<>("", null, new Node<>(""));
+        out.println("root with a right child (expected 1): " + getTreeHeight(root));
+
+        root = new Node<>("", null, new Node<>("", new Node<>(""), null));
+        out.println("root with a right child with left child (expected 2): " + getTreeHeight(root));
+    }
 }
 
 
