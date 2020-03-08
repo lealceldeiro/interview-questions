@@ -13,9 +13,15 @@ import static main.java.excersices.groupsinsecuence.GroupController.getLengthOfL
 import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsInSequence;
 import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
 import static main.java.excersices.wall.WallController.canWeBuildAWallOfSizeFrom;
+import static main.java.excersices.commonword.CommonWordController.findMostCommonWordIn;
 
+/**
+ * This class is only the program runner. To see the implementation logic for each problem see the other classes in each
+ * independent packages.
+ */
 public final class Main {
     private static final int TOP_AGE_FOR_YOUNG_PEOPLE = 30;
+
     private Main() {
     }
 
@@ -40,13 +46,16 @@ public final class Main {
                 runGetLargestGroupInNumberSequence();
                 break;
             case 3:
-                runGetNumberOfGroupInNumberSequence();
+                runGetNumberOfGroupsInNumberSequence();
                 break;
             case 4:
-                runGetNumberOfGroupOfCustomSizeInSequence();
+                runGetNumberOfGroupsOfCustomSizeInSequence();
+                break;
+            case 5:
+                runWallProblem();
                 break;
             default:
-                runWallProblem();
+                runMostCommonWordProblem();
         }
     }
 
@@ -84,7 +93,7 @@ public final class Main {
         out.println("[1,1,2,2,3,3,3 (expected 3): " + getLengthOfLargestGroupInSequence(1, 1, 2, 2, 3, 3, 3));
     }
 
-    private static void runGetNumberOfGroupInNumberSequence() {
+    private static void runGetNumberOfGroupsInNumberSequence() {
         out.println("[] (expected 0): " + getNumberOfGroupsInSequence());
         out.println("[1] (expected 0): " + getNumberOfGroupsInSequence(1));
         out.println("[1,1] (expected 1): " + getNumberOfGroupsInSequence(1, 1));
@@ -99,7 +108,7 @@ public final class Main {
         out.println("[1,1,2,2,3,3,3] (expected 3): " + getNumberOfGroupsInSequence(1, 1, 2, 2, 3, 3, 3));
     }
 
-    private static void runGetNumberOfGroupOfCustomSizeInSequence() {
+    private static void runGetNumberOfGroupsOfCustomSizeInSequence() {
         out.println("0, [] (expected 0): " + getNumberOfGroupsOfCustomSizeInSequence(0));
         out.println("0, [1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(0, 1));
         out.println("0, [1,1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(0, 1, 1));
@@ -146,6 +155,23 @@ public final class Main {
         out.println("bb: 1, sm: 1, w: 5 (expected true): " + canWeBuildAWallOfSizeFrom(1, bbSize, 1, sbSize, 5));
         out.println("bb: 1, sm: 1, w: 1 (expected true): " + canWeBuildAWallOfSizeFrom(1, bbSize, 1, sbSize, 1));
     }
+
+    private static void runMostCommonWordProblem() {
+        out.println("'', '' (expected null): " + findMostCommonWordIn("", ""));
+        out.println("'a', 'a' (expected null): " + findMostCommonWordIn("a", "a"));
+        out.println("'A', 'a' (expected null): " + findMostCommonWordIn("A", "a"));
+        out.println("'a', 'A' (expected null): " + findMostCommonWordIn("a", "A"));
+        out.println("'a', 'b' (expected a): " + findMostCommonWordIn("a", "b"));
+        out.println("'a, b', 'b' (expected a): " + findMostCommonWordIn("a,b", "b"));
+        out.println("'a, b', 'a,b' (expected null): " + findMostCommonWordIn("a,b", "a,b"));
+        out.println("'a b', 'a b' (expected null): " + findMostCommonWordIn("a b", "a b"));
+        out.println("'a, b', 'a, b' (expected null): " + findMostCommonWordIn("a, b", "a, b"));
+        out.println("'a a b', 'x y' (expected a): " + findMostCommonWordIn("a a b", "x y"));
+        out.println("'a b a', 'x y' (expected a): " + findMostCommonWordIn("a b a", "x y"));
+        out.println("'b a a', 'x y' (expected a): " + findMostCommonWordIn("b a a", "x y"));
+        out.println("'a b', 'x y' (expected a): " + findMostCommonWordIn("a b", "x y"));
+    }
+
 }
 
 
