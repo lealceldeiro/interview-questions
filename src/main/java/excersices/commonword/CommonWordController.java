@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-public class CommonWordController {
+public final class CommonWordController {
     private CommonWordController() {
     }
 
