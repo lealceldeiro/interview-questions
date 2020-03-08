@@ -1,11 +1,11 @@
 package main.java.excersices.commonword;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 public final class CommonWordController {
     private CommonWordController() {
@@ -25,7 +25,7 @@ public final class CommonWordController {
     public static String findMostCommonWordIn(String string, String bannedWordsString) {
         String regex = "\\W";
 
-        Set<String> bannedWordsSet = new HashSet<>();
+        Collection<String> bannedWordsSet = new HashSet<>();
         Collections.addAll(bannedWordsSet, bannedWordsString.toLowerCase(Locale.ENGLISH).split(regex));
 
         String mostCommonWord = null;
