@@ -14,6 +14,7 @@ import static main.java.excersices.groupsinsecuence.GroupController.getLengthOfL
 import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsInSequence;
 import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
 import static main.java.excersices.wall.WallController.canWeBuildAWallOfSizeFrom;
+import static main.java.excersices.wall.WallController.getNumberOfRequiredBricksToBuildAWallOfSize;
 import static main.java.excersices.commonword.CommonWordController.findMostCommonWordIn;
 import static main.java.excersices.treeheight.TreeController.getTreeHeight;
 
@@ -54,13 +55,16 @@ public final class Main {
                 runGetNumberOfGroupsOfCustomSizeInSequence();
                 break;
             case 5:
-                runWallProblem();
+                runWallProblemVariant1();
                 break;
             case 6:
                 runMostCommonWordProblem();
                 break;
-            default:
+            case 7:
                 runTreeHeightProblem();
+                break;
+            default:
+                runWallProblemVariant2();
         }
     }
 
@@ -141,24 +145,41 @@ public final class Main {
         out.println("3, [1,1,1,4,4,7,4] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 4, 4, 7, 4));
     }
 
-    private static void runWallProblem() {
-        int bbSize = 5;
-        int sbSize = 1;
+    private static void runWallProblemVariant1() {
+        out.println("bb: 0, sm: 0, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(0, 0, 0));
+        out.println("bb: 1, sm: 0, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(1, 0, 0));
+        out.println("bb: 0, sm: 1, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(0, 1, 0));
+        out.println("bb: 0, sm: 0, w: 1 (expected false): " + canWeBuildAWallOfSizeFrom(0, 0, 1));
+        out.println("bb: 1, sm: 0, w: 4 (expected false): " + canWeBuildAWallOfSizeFrom(1, 0, 4));
+        out.println("bb: 1, sm: 0, w: 5 (expected true): " + canWeBuildAWallOfSizeFrom(1, 0, 5));
+        out.println("bb: 1, sm: 0, w: 6 (expected false): " + canWeBuildAWallOfSizeFrom(1, 0, 6));
+        out.println("bb: 0, sm: 1, w: 1 (expected true): " + canWeBuildAWallOfSizeFrom(0, 1, 1));
+        out.println("bb: 0, sm: 1, w: 2 (expected false): " + canWeBuildAWallOfSizeFrom(0, 1, 2));
+        out.println("bb: 1, sm: 1, w: 4 (expected false): " + canWeBuildAWallOfSizeFrom(1, 1, 4));
+        out.println("bb: 1, sm: 1, w: 6 (expected true): " + canWeBuildAWallOfSizeFrom(1, 1, 6));
+        out.println("bb: 1, sm: 1, w: 7 (expected false): " + canWeBuildAWallOfSizeFrom(1, 1, 7));
+        out.println("bb: 1, sm: 1, w: 5 (expected true): " + canWeBuildAWallOfSizeFrom(1, 1, 5));
+        out.println("bb: 1, sm: 1, w: 1 (expected true): " + canWeBuildAWallOfSizeFrom(1, 1, 1));
+    }
 
-        out.println("bb: 0, sm: 0, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(0, bbSize, 0, sbSize, 0));
-        out.println("bb: 1, sm: 0, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(1, bbSize, 0, sbSize, 0));
-        out.println("bb: 0, sm: 1, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(0, bbSize, 1, sbSize, 0));
-        out.println("bb: 0, sm: 0, w: 1 (expected false): " + canWeBuildAWallOfSizeFrom(0, bbSize, 0, sbSize, 1));
-        out.println("bb: 1, sm: 0, w: 4 (expected false): " + canWeBuildAWallOfSizeFrom(1, bbSize, 0, sbSize, 4));
-        out.println("bb: 1, sm: 0, w: 5 (expected true): " + canWeBuildAWallOfSizeFrom(1, bbSize, 0, sbSize, 5));
-        out.println("bb: 1, sm: 0, w: 6 (expected false): " + canWeBuildAWallOfSizeFrom(1, bbSize, 0, sbSize, 6));
-        out.println("bb: 0, sm: 1, w: 1 (expected true): " + canWeBuildAWallOfSizeFrom(0, bbSize, 1, sbSize, 1));
-        out.println("bb: 0, sm: 1, w: 2 (expected false): " + canWeBuildAWallOfSizeFrom(0, bbSize, 1, sbSize, 2));
-        out.println("bb: 1, sm: 1, w: 4 (expected false): " + canWeBuildAWallOfSizeFrom(1, bbSize, 1, sbSize, 4));
-        out.println("bb: 1, sm: 1, w: 6 (expected true): " + canWeBuildAWallOfSizeFrom(1, bbSize, 1, sbSize, 6));
-        out.println("bb: 1, sm: 1, w: 7 (expected false): " + canWeBuildAWallOfSizeFrom(1, bbSize, 1, sbSize, 7));
-        out.println("bb: 1, sm: 1, w: 5 (expected true): " + canWeBuildAWallOfSizeFrom(1, bbSize, 1, sbSize, 5));
-        out.println("bb: 1, sm: 1, w: 1 (expected true): " + canWeBuildAWallOfSizeFrom(1, bbSize, 1, sbSize, 1));
+    private static void runWallProblemVariant2() {
+        int bbSize = 10;
+        int sbSize = 7;
+
+        out.println("w: 0 (expected [0, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 0)));
+        out.println("w: 0 (expected [0, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 0)));
+        out.println("w: 0 (expected [0, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 0)));
+        out.println("w: 1 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 1)));
+        out.println("w: 4 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 4)));
+        out.println("w: 10 (expected [1, 0): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 10)));
+        out.println("w: 11 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 11)));
+        out.println("w: 7 (expected [0, 1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 7)));
+        out.println("w: 2 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 2)));
+        out.println("w: 4 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 4)));
+        out.println("w: 17 (expected [1, 1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 17)));
+        out.println("w: 18 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 18)));
+        out.println("w: 10 (expected [1, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 10)));
+        out.println("w: 19 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 19)));
     }
 
     private static void runMostCommonWordProblem() {
