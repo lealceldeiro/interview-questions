@@ -1,5 +1,6 @@
 package main.java;
 
+import main.java.excersices.circulararray.CircularArray;
 import main.java.excersices.personfilter.Person;
 import main.java.excersices.personfilter.PersonController;
 import main.java.excersices.treeheight.Node;
@@ -10,13 +11,13 @@ import java.util.List;
 import static java.lang.System.err;
 import static java.lang.System.exit;
 import static java.lang.System.out;
+import static main.java.excersices.commonword.CommonWordController.findMostCommonWordIn;
 import static main.java.excersices.groupsinsecuence.GroupController.getLengthOfLargestGroupInSequence;
 import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsInSequence;
 import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
+import static main.java.excersices.treeheight.TreeController.getTreeHeight;
 import static main.java.excersices.wall.WallController.canWeBuildAWallOfSizeFrom;
 import static main.java.excersices.wall.WallController.getNumberOfRequiredBricksToBuildAWallOfSize;
-import static main.java.excersices.commonword.CommonWordController.findMostCommonWordIn;
-import static main.java.excersices.treeheight.TreeController.getTreeHeight;
 
 /**
  * This class is only the program runner. To see the implementation logic for each problem see the other classes in each
@@ -30,7 +31,7 @@ public final class Main {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            err.println("Select a number from 1 to 5 to run an algorithm");
+            err.println("Select a number from 1 to 8 to run an algorithm");
             exit(1);
         }
         int option = 1;
@@ -63,9 +64,31 @@ public final class Main {
             case 7:
                 runTreeHeightProblem();
                 break;
+            case 8:
+                runCircularArray();
+                break;
             default:
                 runWallProblemVariant2();
         }
+    }
+
+    private static void runCircularArray() {
+        CircularArray<Integer> array = new CircularArray<>(1, 2, 3, 4, 5, 6, 7);
+        array.rotate(5);
+        StringBuilder rotated = new StringBuilder();
+        for (Integer integer : array) {
+            rotated.append(integer);
+        }
+        out.println("case 1 - expected: 6712345,  actual: " + rotated);
+
+        array = new CircularArray<>(1, 2, 3, 4, 5, 6, 7);
+        array.rotate(-3);
+        rotated = new StringBuilder();
+        for (Integer integer : array) {
+            rotated.append(integer);
+        }
+        out.println("case 2 - expected: 5671234, actual: " + rotated);
+
     }
 
     private static void runPersonProblem() {
@@ -79,7 +102,7 @@ public final class Main {
                 new Person("Victor- Young not cool", TOP_AGE_FOR_YOUNG_PEOPLE - 1, Person.Coolness.NOT_COOL),
                 new Person("Victor- Young cool", TOP_AGE_FOR_YOUNG_PEOPLE - 1, Person.Coolness.COOL),
                 new Person("Victor- Young very cool", TOP_AGE_FOR_YOUNG_PEOPLE - 1, Person.Coolness.VERY_COOL)
-        );
+                                           );
 
         out.println("Young people: " + PersonController.getNameOfYoungPeople(people, TOP_AGE_FOR_YOUNG_PEOPLE));
         out.println("Young people (min level of coolness: not cool): " + PersonController.getNameOfYoungCoolPeople(people, TOP_AGE_FOR_YOUNG_PEOPLE, Person.Coolness.NOT_COOL));
