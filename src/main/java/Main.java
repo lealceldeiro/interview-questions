@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.excersices.circulararray.CircularArray;
+import main.java.excersices.linkedlist.MLinkedList;
 import main.java.excersices.personfilter.Person;
 import main.java.excersices.personfilter.PersonController;
 import main.java.excersices.treeheight.Node;
@@ -31,7 +32,7 @@ public final class Main {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            err.println("Select a number from 1 to 8 to run an algorithm");
+            err.println("Select a number from 1 to 10 to run an algorithm");
             exit(1);
         }
         int option = 1;
@@ -67,9 +68,25 @@ public final class Main {
             case 8:
                 runCircularArray();
                 break;
+            case 9:
+                runMLinkedList();
+                break;
             default:
                 runWallProblemVariant2();
         }
+    }
+
+    private static void runMLinkedList() {
+        MLinkedList<Integer> linkedList = new MLinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(7);
+        linkedList.add(21);
+
+        out.println("expected: 21, actual: " + linkedList.nElementFromTail(1));
+        out.println("expected: 7, actual: " + linkedList.nElementFromTail(2));
+        out.println("expected: null, actual: " + linkedList.nElementFromTail(51));
     }
 
     private static void runCircularArray() {
