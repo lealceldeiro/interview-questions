@@ -19,6 +19,7 @@ public final class CommonWordController {
      * @param string            String containing a transcript with the words separated by space or comma.
      * @param bannedWordsString String containing a list of the words which are banned and should not be considered as
      *                          most common words, separated by space or comma.
+     *
      * @return A {@link String} with the most common word as per the previous description or null either if there are no
      * words in the string or all of them are banned.
      */
@@ -48,5 +49,4 @@ public final class CommonWordController {
 
         return mostCommonWord;
     }
-
 }

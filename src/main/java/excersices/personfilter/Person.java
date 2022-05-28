@@ -28,7 +28,6 @@ public class Person {
         COOL(1),
         VERY_COOL(2);
 
-
         final int coolnessIndicator;
 
         Coolness(int coolnessIndicator) {
@@ -40,5 +39,4 @@ public class Person {
             return coolnessIndicator >= coolnessLevel.coolnessIndicator;
         }
     }
-
 }

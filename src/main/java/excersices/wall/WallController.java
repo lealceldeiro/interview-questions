@@ -13,6 +13,7 @@ public final class WallController {
      * @param availableBigBrick   Number of available BB
      * @param availableSmallBrick Number of available SB
      * @param wallSize            Size of the wall to construct
+     *
      * @return {@code true} if the wall can be constructed, {@code false} otherwise.
      */
     public static boolean canWeBuildAWallOfSizeFrom(int availableBigBrick, int availableSmallBrick, int wallSize) {
@@ -36,6 +37,7 @@ public final class WallController {
      * @param bigBrickSize   Size of the BBs
      * @param smallBrickSize Size of the SBs
      * @param wallSize       Size of the wall to construct
+     *
      * @return An array if {@code int} with two elements. The first element is the number of required BBs to
      * construct the wall and second element is the number of SBs required to construct the wall. If there is no
      * possible combination to construct the wall then [-1, -1] is returned.
@@ -51,9 +53,8 @@ public final class WallController {
         }
 
         return myWallSize >= 0
-                && myWallSize % smallBrickSize == 0
-                ? new int[]{((wallSize - myWallSize) / bigBrickSize), myWallSize / smallBrickSize}
-                : new int[]{-1, -1};
+               && myWallSize % smallBrickSize == 0
+               ? new int[]{((wallSize - myWallSize) / bigBrickSize), myWallSize / smallBrickSize}
+               : new int[]{-1, -1};
     }
-
 }

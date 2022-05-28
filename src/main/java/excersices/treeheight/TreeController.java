@@ -18,5 +18,4 @@ public final class TreeController {
 
         return Math.max(getTreeHeight(node.getLeft()), getTreeHeight(node.getRight())) + 1;
     }
-
 }

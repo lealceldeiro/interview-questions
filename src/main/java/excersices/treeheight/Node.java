@@ -26,5 +26,4 @@ public final class Node<E> {
     public E getData() {
         return data;
     }
-
 }

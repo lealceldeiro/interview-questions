@@ -10,6 +10,7 @@ public final class GroupController {
      * and {@code 4,4,4} and the largest length of these three groups is {@code 3} (from {@code 7,7,7}).
      *
      * @param sequence Sequence of numbers.
+     *
      * @return An {@code int} indicating the length of the largest group.
      */
     public static int getLengthOfLargestGroupInSequence(int... sequence) {
@@ -39,6 +40,7 @@ public final class GroupController {
      * and {@code 4,4,4}.
      *
      * @param sequence Sequence of numbers.
+     *
      * @return An {@code int} indicating the number of groups.
      */
     public static int getNumberOfGroupsInSequence(int... sequence) {
@@ -68,6 +70,7 @@ public final class GroupController {
      *
      * @param groupSize Min number of consecutive equals numbers in the sequence, so they can be count as a group.
      * @param sequence  Sequence of numbers.
+     *
      * @return An {@code int} indicating the number of groups.
      */
     public static int getNumberOfGroupsOfCustomSizeInSequence(int groupSize, int... sequence) {
@@ -89,5 +92,4 @@ public final class GroupController {
 
         return numberOfGroups;
     }
-
 }
