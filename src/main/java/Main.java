@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.excersices.circulararray.CircularArray;
+import main.java.excersices.fibonacci.Fibonacci;
 import main.java.excersices.linkedlist.MLinkedList;
 import main.java.excersices.personfilter.Person;
 import main.java.excersices.personfilter.PersonController;
@@ -32,7 +33,7 @@ public final class Main {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            err.println("Select a number from 1 to 10 to run an algorithm");
+            err.println("Select a number from 1 to 11 to run an algorithm");
             exit(1);
         }
         int option = 1;
@@ -71,9 +72,43 @@ public final class Main {
             case 9:
                 runMLinkedList();
                 break;
+            case 10:
+                runFibonacci();
+                break;
             default:
                 runWallProblemVariant2();
         }
+    }
+
+    /**
+     * There's a street with N spaces and there cars and buses can be parked.
+     * A car takes 1 slot and a bus takes 2 slots.
+     * Given the number of slots available in the street, how many combinations of cars and buses parked can be?
+     * Data:
+     * car: 1 slot
+     * bus: 2 slot
+     * street: N spaces
+     * ====
+     * Examples:
+     * 1 slot   (1 combination)  : car
+     * 2 slots  (2 combinations) : car car - bus
+     * 3 slots  (3 combinations) : car car car - car bus - bus car
+     * 4 slots  (5 combinations) : car car car car - car car bus - car bus car - bus car car - bus bus
+     * 5 slots  (8 combinations) : car car car car car - car car car bus - car car bus car - car bus car car - bus car car car - bus bus car - bus car bus - car bus bus
+     * 6 slots  (13 combinations)
+     * So, as the series goes on, this is the fibonacci sequence, starting it from 1.
+     * See: <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci Number</a>
+     */
+    private static void runFibonacci() {
+        var f = new Fibonacci();
+        out.println("expected: 1, actual: " + f.nThNumber(1));
+        out.println("expected: 2, actual: " + f.nThNumber(2));
+        out.println("expected: 3, actual: " + f.nThNumber(3));
+        out.println("expected: 5, actual: " + f.nThNumber(4));
+        out.println("expected: 8, actual: " + f.nThNumber(5));
+        out.println("expected: 13, actual: " + f.nThNumber(6));
+        out.println("expected: 21, actual: " + f.nThNumber(7));
+        out.println("expected: 34, actual: " + f.nThNumber(8));
     }
 
     private static void runMLinkedList() {
