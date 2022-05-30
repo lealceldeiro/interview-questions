@@ -4,6 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -70,8 +71,8 @@ class WallControllerTest {
     @ParameterizedTest
     @MethodSource("getNumberOfRequiredBricksToBuildAWallOfSize")
     void getNumberOfRequiredBricksToBuildAWallOfSize(int bigBrickSize, int smallBrickSize, int wallSize, int[] result) {
+        var actual = WallController.getNumberOfRequiredBricksToBuildAWallOfSize(bigBrickSize, smallBrickSize, wallSize);
         assertArrayEquals(result,
-                          WallController.getNumberOfRequiredBricksToBuildAWallOfSize(bigBrickSize, smallBrickSize,
-                                                                                     wallSize));
+                          actual, "Expected: " + Arrays.toString(result) + ", Actual: " + Arrays.toString(actual));
     }
 }
