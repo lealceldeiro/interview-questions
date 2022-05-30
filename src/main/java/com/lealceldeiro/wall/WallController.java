@@ -5,13 +5,13 @@ public final class WallController {
     }
 
     /**
-     * Given a "BigBrick" (BB) of size 5 and a "SmallBrick" (SB) of size 1, a given "WallSize" can be constructed by
-     * using zero, one or more BB and zero, one or more SB.
+     * Given a "BigBrick" of size 5 meters and a "SmallBrick" of size 1 meter, a given "WallSize" can be constructed by
+     * using zero, one or more big brick and zero, one or more small brick.
      * <p>
-     * So, given the number of available BB and SM, can we construct a wall of a given size in meters?
+     * So, given the number of available big bricks and small bricks, can we construct a wall of a given size in meters?
      *
-     * @param availableBigBrick   Number of available BB
-     * @param availableSmallBrick Number of available SB
+     * @param availableBigBrick   Number of available big bricks
+     * @param availableSmallBrick Number of available small bricks
      * @param wallSize            Size of the wall to construct
      *
      * @return {@code true} if the wall can be constructed, {@code false} otherwise.
@@ -33,28 +33,38 @@ public final class WallController {
      * "WallSize" can be constructed by using zero, one or more BB and zero, one or more SB.
      * <p>
      * So, given the size of the BB and SM, how many BBs and SBs we need to construct a wall of a given size in meters?
+     * <p>
+     * Assume BB have priority to be used over SM.
      *
      * @param bigBrickSize   Size of the BBs
      * @param smallBrickSize Size of the SBs
      * @param wallSize       Size of the wall to construct
      *
-     * @return An array if {@code int} with two elements. The first element is the number of required BBs to
+     * @return An array of {@code int} with two elements. The first element is the number of required BBs to
      * construct the wall and second element is the number of SBs required to construct the wall. If there is no
      * possible combination to construct the wall then [-1, -1] is returned.
      */
     public static int[] getNumberOfRequiredBricksToBuildAWallOfSize(int bigBrickSize, int smallBrickSize, int wallSize) {
-        if (wallSize % bigBrickSize == 0) {
-            return new int[]{wallSize / bigBrickSize, 0};
-        }
+        if (wallSize == 0) { return new int[]{0, 0}; }
 
-        int myWallSize = wallSize;
-        while ((myWallSize - bigBrickSize) % smallBrickSize == 0 && myWallSize - bigBrickSize > 0) {
-            myWallSize -= bigBrickSize;
-        }
+        int numberOfBB = wallSize / bigBrickSize;
+        var remainingToBuild = wallSize - numberOfBB * bigBrickSize;
+        int numberOfSB = remainingToBuild / smallBrickSize;
+        remainingToBuild -= numberOfSB * smallBrickSize;
 
-        return myWallSize >= 0
-               && myWallSize % smallBrickSize == 0
-               ? new int[]{((wallSize - myWallSize) / bigBrickSize), myWallSize / smallBrickSize}
-               : new int[]{-1, -1};
+        var noCombination = new int[]{-1, -1};
+        if (numberOfBB == 0 && numberOfSB == 0) { return noCombination; }
+
+        while (remainingToBuild > 0 && remainingToBuild % smallBrickSize != 0) {
+            if (numberOfBB > 0) {
+                remainingToBuild += bigBrickSize;
+                numberOfBB--;
+            }
+            numberOfSB++;
+            remainingToBuild -= smallBrickSize;
+        }
+        return remainingToBuild >= 0
+               ? new int[]{numberOfBB, numberOfSB + remainingToBuild / smallBrickSize}
+               : noCombination;
     }
 }
