@@ -1,4 +1,4 @@
-package main.java.excersices.circulararray;
+package com.lealceldeiro.circulararray;
 
 import java.util.ArrayList;
 import java.util.Iterator;

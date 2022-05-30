@@ -1,4 +1,4 @@
-package main.java.excersices.treeheight;
+package com.lealceldeiro.treeheight;
 
 public final class TreeController {
     private TreeController() {

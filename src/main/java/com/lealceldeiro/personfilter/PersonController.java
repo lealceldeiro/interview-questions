@@ -1,4 +1,4 @@
-package main.java.excersices.personfilter;
+package com.lealceldeiro.personfilter;
 
 import java.util.Collection;
 import java.util.List;

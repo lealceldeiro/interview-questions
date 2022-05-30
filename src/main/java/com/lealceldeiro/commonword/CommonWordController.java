@@ -1,4 +1,4 @@
-package main.java.excersices.commonword;
+package com.lealceldeiro.commonword;
 
 import java.util.Collection;
 import java.util.Collections;

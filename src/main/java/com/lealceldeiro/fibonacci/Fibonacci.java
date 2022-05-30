@@ -1,4 +1,4 @@
-package main.java.excersices.fibonacci;
+package com.lealceldeiro.fibonacci;
 
 public class Fibonacci {
     private final int[] cache;

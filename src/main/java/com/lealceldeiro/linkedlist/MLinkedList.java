@@ -1,4 +1,4 @@
-package main.java.excersices.linkedlist;
+package com.lealceldeiro.linkedlist;
 
 public class MLinkedList<E> {
     private static class MNode<E> {

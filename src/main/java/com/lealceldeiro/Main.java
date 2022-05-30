@@ -1,11 +1,11 @@
-package main.java;
+package com.lealceldeiro;
 
-import main.java.excersices.circulararray.CircularArray;
-import main.java.excersices.fibonacci.Fibonacci;
-import main.java.excersices.linkedlist.MLinkedList;
-import main.java.excersices.personfilter.Person;
-import main.java.excersices.personfilter.PersonController;
-import main.java.excersices.treeheight.Node;
+import com.lealceldeiro.circulararray.CircularArray;
+import com.lealceldeiro.fibonacci.Fibonacci;
+import com.lealceldeiro.linkedlist.MLinkedList;
+import com.lealceldeiro.personfilter.Person;
+import com.lealceldeiro.personfilter.PersonController;
+import com.lealceldeiro.treeheight.Node;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,13 +13,13 @@ import java.util.List;
 import static java.lang.System.err;
 import static java.lang.System.exit;
 import static java.lang.System.out;
-import static main.java.excersices.commonword.CommonWordController.findMostCommonWordIn;
-import static main.java.excersices.groupsinsecuence.GroupController.getLengthOfLargestGroupInSequence;
-import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsInSequence;
-import static main.java.excersices.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
-import static main.java.excersices.treeheight.TreeController.getTreeHeight;
-import static main.java.excersices.wall.WallController.canWeBuildAWallOfSizeFrom;
-import static main.java.excersices.wall.WallController.getNumberOfRequiredBricksToBuildAWallOfSize;
+import static com.lealceldeiro.commonword.CommonWordController.findMostCommonWordIn;
+import static com.lealceldeiro.groupsinsecuence.GroupController.getLengthOfLargestGroupInSequence;
+import static com.lealceldeiro.groupsinsecuence.GroupController.getNumberOfGroupsInSequence;
+import static com.lealceldeiro.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
+import static com.lealceldeiro.treeheight.TreeController.getTreeHeight;
+import static com.lealceldeiro.wall.WallController.canWeBuildAWallOfSizeFrom;
+import static com.lealceldeiro.wall.WallController.getNumberOfRequiredBricksToBuildAWallOfSize;
 
 /**
  * This class is only the program runner. To see the implementation logic for each problem see the other classes in each

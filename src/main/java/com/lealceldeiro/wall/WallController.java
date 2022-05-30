@@ -1,4 +1,4 @@
-package main.java.excersices.wall;
+package com.lealceldeiro.wall;
 
 public final class WallController {
     private WallController() {

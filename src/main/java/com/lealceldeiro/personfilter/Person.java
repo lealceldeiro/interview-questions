@@ -1,4 +1,4 @@
-package main.java.excersices.personfilter;
+package com.lealceldeiro.personfilter;
 
 public class Person {
     private final String name;

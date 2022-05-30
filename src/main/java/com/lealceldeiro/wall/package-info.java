@@ -8,4 +8,4 @@
  * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
  * @version 0.1
  */
-package main.java.excersices.wall;
+package com.lealceldeiro.wall;

@@ -10,4 +10,4 @@
  * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
  * @version 0.1
  */
-package main.java.excersices.treeheight;
+package com.lealceldeiro.treeheight;

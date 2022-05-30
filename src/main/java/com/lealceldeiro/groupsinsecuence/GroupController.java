@@ -1,4 +1,4 @@
-package main.java.excersices.groupsinsecuence;
+package com.lealceldeiro.groupsinsecuence;
 
 public final class GroupController {
     private GroupController() {

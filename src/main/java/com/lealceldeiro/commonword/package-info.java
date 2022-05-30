@@ -6,4 +6,4 @@
  * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
  * @version 0.1
  */
-package main.java.excersices.commonword;
+package com.lealceldeiro.commonword;

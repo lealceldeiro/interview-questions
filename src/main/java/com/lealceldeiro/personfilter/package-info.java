@@ -5,4 +5,4 @@
  * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
  * @version 0.1
  */
-package main.java.excersices.personfilter;
+package com.lealceldeiro.personfilter;
