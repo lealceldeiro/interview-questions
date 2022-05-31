@@ -36,7 +36,7 @@ public final class GroupController {
 
     /**
      * Returns the number of groups of numbers in a given sequence. A group is any subsequence of 2 or more
-     * equals numbers. i.e.: in the sequence {@code 1,2,2,3,7,7,4,4,4,3} there are 3 groups {@code 2,2}, {@code 7,7,7}
+     * equals numbers. i.e.: in the sequence {@code 1,2,2,3,7,7,7,4,4,4,3} there are 3 groups {@code 2,2}, {@code 7,7,7}
      * and {@code 4,4,4}.
      *
      * @param sequence Sequence of numbers.
@@ -44,23 +44,7 @@ public final class GroupController {
      * @return An {@code int} indicating the number of groups.
      */
     public static int getNumberOfGroupsInSequence(int... sequence) {
-        int numberOfGroups = 0;
-
-        int i = 0;
-        while (i < sequence.length) {
-            int previousIndex = i;
-
-            while (i < sequence.length - 1 && sequence[i] == sequence[i + 1]) {
-                i++;
-            }
-
-            if (previousIndex != i) {
-                numberOfGroups++;
-            }
-            i++;
-        }
-
-        return numberOfGroups;
+        return getNumberOfGroupsInSequence(2, sequence);
     }
 
     /**
@@ -73,7 +57,7 @@ public final class GroupController {
      *
      * @return An {@code int} indicating the number of groups.
      */
-    public static int getNumberOfGroupsOfCustomSizeInSequence(int groupSize, int... sequence) {
+    public static int getNumberOfGroupsInSequence(int groupSize, int... sequence) {
         int numberOfGroups = 0;
 
         int i = 0;

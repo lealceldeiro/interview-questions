@@ -6,9 +6,6 @@ import com.lealceldeiro.linkedlist.MLinkedList;
 import com.lealceldeiro.treeheight.Node;
 
 import static com.lealceldeiro.commonword.CommonWordController.findMostCommonWordIn;
-import static com.lealceldeiro.groupsinsecuence.GroupController.getLengthOfLargestGroupInSequence;
-import static com.lealceldeiro.groupsinsecuence.GroupController.getNumberOfGroupsInSequence;
-import static com.lealceldeiro.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
 import static com.lealceldeiro.treeheight.TreeController.getTreeHeight;
 import static java.lang.System.err;
 import static java.lang.System.exit;
@@ -36,15 +33,6 @@ public final class Main {
         }
 
         switch (option) {
-            case 2:
-                runGetLargestGroupInNumberSequence();
-                break;
-            case 3:
-                runGetNumberOfGroupsInNumberSequence();
-                break;
-            case 4:
-                runGetNumberOfGroupsOfCustomSizeInSequence();
-                break;
             case 6:
                 runMostCommonWordProblem();
                 break;
@@ -124,64 +112,6 @@ public final class Main {
         }
         out.println("case 2 - expected: 5671234, actual: " + rotated);
 
-    }
-
-    private static void runGetLargestGroupInNumberSequence() {
-        out.println("[] (expected 0): " + getLengthOfLargestGroupInSequence());
-        out.println("[1] (expected 0): " + getLengthOfLargestGroupInSequence(1));
-        out.println("[1,1] (expected 2): " + getLengthOfLargestGroupInSequence(1, 1));
-        out.println("[2,1,1] (expected 2): " + getLengthOfLargestGroupInSequence(2, 1, 1));
-        out.println("[1,2,1] (expected 0): " + getLengthOfLargestGroupInSequence(1, 2, 1));
-        out.println("[1,1,2] (expected 2): " + getLengthOfLargestGroupInSequence(1, 1, 2));
-        out.println("[1,1,2,2] (expected 2): " + getLengthOfLargestGroupInSequence(1, 1, 2, 2));
-        out.println("[3,1,1,2,2] (expected 2): " + getLengthOfLargestGroupInSequence(3, 1, 1, 2, 2));
-        out.println("[1,1,3,2,2] (expected 2): " + getLengthOfLargestGroupInSequence(1, 1, 3, 2, 2));
-        out.println("[1,1,2,2,3] (expected 2): " + getLengthOfLargestGroupInSequence(1, 1, 2, 2, 3));
-        out.println("[1,1,2,2,3,3] (expected 2): " + getLengthOfLargestGroupInSequence(1, 1, 2, 2, 3, 3));
-        out.println("[1,1,2,2,3,3,3 (expected 3): " + getLengthOfLargestGroupInSequence(1, 1, 2, 2, 3, 3, 3));
-    }
-
-    private static void runGetNumberOfGroupsInNumberSequence() {
-        out.println("[] (expected 0): " + getNumberOfGroupsInSequence());
-        out.println("[1] (expected 0): " + getNumberOfGroupsInSequence(1));
-        out.println("[1,1] (expected 1): " + getNumberOfGroupsInSequence(1, 1));
-        out.println("[2,1,1] (expected 1): " + getNumberOfGroupsInSequence(2, 1, 1));
-        out.println("[1,2,1] (expected 0): " + getNumberOfGroupsInSequence(1, 2, 1));
-        out.println("[1,1,2] (expected 1): " + getNumberOfGroupsInSequence(1, 1, 2));
-        out.println("[1,1,2,2] (expected 2): " + getNumberOfGroupsInSequence(1, 1, 2, 2));
-        out.println("[3,1,1,2,2] (expected 2): " + getNumberOfGroupsInSequence(3, 1, 1, 2, 2));
-        out.println("[1,1,3,2,2] (expected 2): " + getNumberOfGroupsInSequence(1, 1, 3, 2, 2));
-        out.println("[1,1,2,2,3] (expected 2): " + getNumberOfGroupsInSequence(1, 1, 2, 2, 3));
-        out.println("[1,1,2,2,3,3] (expected 3): " + getNumberOfGroupsInSequence(1, 1, 2, 2, 3, 3));
-        out.println("[1,1,2,2,3,3,3] (expected 3): " + getNumberOfGroupsInSequence(1, 1, 2, 2, 3, 3, 3));
-    }
-
-    private static void runGetNumberOfGroupsOfCustomSizeInSequence() {
-        out.println("0, [] (expected 0): " + getNumberOfGroupsOfCustomSizeInSequence(0));
-        out.println("0, [1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(0, 1));
-        out.println("0, [1,1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(0, 1, 1));
-        out.println("0, [1,1,2] (expected 2): " + getNumberOfGroupsOfCustomSizeInSequence(0, 1, 1, 2));
-        out.println("0, [1,2,1] (expected 3): " + getNumberOfGroupsOfCustomSizeInSequence(0, 1, 2, 1));
-
-        out.println("1, [] (expected 0): " + getNumberOfGroupsOfCustomSizeInSequence(1));
-        out.println("1, [1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(1, 1));
-        out.println("1, [1,1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(1, 1, 1));
-
-        out.println("2, [1] (expected 0): " + getNumberOfGroupsOfCustomSizeInSequence(2, 1));
-        out.println("2, [1,1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(2, 1, 1));
-        out.println("2, [1,1,1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(2, 1, 1, 2));
-        out.println("3, [1,1] (expected 0): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1));
-        out.println("3, [1,1,1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1));
-        out.println("3, [4,1,1,1] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 4, 1, 1, 1));
-        out.println("3, [1,4,1,1] (expected 0): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 4, 1, 1));
-        out.println("3, [1,1,4,1] (expected 0): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 4, 1));
-        out.println("3, [1,1,1,4] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 4));
-        out.println("3, [1,1,1,4,4,4] (expected 2): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 4, 4, 4));
-        out.println("3, [7,1,1,1,4,4,4] (expected 2): " + getNumberOfGroupsOfCustomSizeInSequence(3, 7, 1, 1, 1, 4, 4, 4));
-        out.println("3, [1,1,1,7, 4,4,4] (expected 2): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 7, 4, 4, 4));
-        out.println("3, [1,1,1,4,4,4,7] (expected 2): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 4, 4, 4, 7));
-        out.println("3, [1,1,7,1,4,4,4] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 7, 1, 4, 4, 4));
-        out.println("3, [1,1,1,4,4,7,4] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 4, 4, 7, 4));
     }
 
     private static void runMostCommonWordProblem() {
