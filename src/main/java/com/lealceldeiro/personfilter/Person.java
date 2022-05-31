@@ -21,8 +21,8 @@ public class Person {
         return coolness.isCool(coolnessLevel);
     }
 
-    boolean isYoung(int ageThreshold) {
-        return getAge() <= ageThreshold;
+    boolean isYoung(int youngPeopleTopAge) {
+        return getAge() <= youngPeopleTopAge;
     }
 
     public int getAge() {

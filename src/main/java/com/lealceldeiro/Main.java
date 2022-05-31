@@ -3,31 +3,22 @@ package com.lealceldeiro;
 import com.lealceldeiro.circulararray.CircularArray;
 import com.lealceldeiro.fibonacci.Fibonacci;
 import com.lealceldeiro.linkedlist.MLinkedList;
-import com.lealceldeiro.personfilter.Person;
-import com.lealceldeiro.personfilter.PersonController;
 import com.lealceldeiro.treeheight.Node;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static java.lang.System.err;
-import static java.lang.System.exit;
-import static java.lang.System.out;
 import static com.lealceldeiro.commonword.CommonWordController.findMostCommonWordIn;
 import static com.lealceldeiro.groupsinsecuence.GroupController.getLengthOfLargestGroupInSequence;
 import static com.lealceldeiro.groupsinsecuence.GroupController.getNumberOfGroupsInSequence;
 import static com.lealceldeiro.groupsinsecuence.GroupController.getNumberOfGroupsOfCustomSizeInSequence;
 import static com.lealceldeiro.treeheight.TreeController.getTreeHeight;
-import static com.lealceldeiro.wall.WallController.canWeBuildAWallOfSizeFrom;
-import static com.lealceldeiro.wall.WallController.getNumberOfRequiredBricksToBuildAWallOfSize;
+import static java.lang.System.err;
+import static java.lang.System.exit;
+import static java.lang.System.out;
 
 /**
  * This class is only the program runner. To see the implementation logic for each problem see the other classes in each
  * independent packages.
  */
 public final class Main {
-    private static final int TOP_AGE_FOR_YOUNG_PEOPLE = 30;
-
     private Main() {
     }
 
@@ -45,9 +36,6 @@ public final class Main {
         }
 
         switch (option) {
-            case 1:
-                runPersonProblem();
-                break;
             case 2:
                 runGetLargestGroupInNumberSequence();
                 break;
@@ -56,9 +44,6 @@ public final class Main {
                 break;
             case 4:
                 runGetNumberOfGroupsOfCustomSizeInSequence();
-                break;
-            case 5:
-                runWallProblemVariant1();
                 break;
             case 6:
                 runMostCommonWordProblem();
@@ -75,8 +60,6 @@ public final class Main {
             case 10:
                 runFibonacci();
                 break;
-            default:
-                runWallProblemVariant2();
         }
     }
 
@@ -143,25 +126,6 @@ public final class Main {
 
     }
 
-    private static void runPersonProblem() {
-        List<Person> people = Arrays.asList(
-                new Person("Victor - Not young not cool", TOP_AGE_FOR_YOUNG_PEOPLE + 1, Person.Coolness.NOT_COOL),
-                new Person("Victor - Not young cool", TOP_AGE_FOR_YOUNG_PEOPLE + 1, Person.Coolness.COOL),
-                new Person("Victor- Not young very cool", TOP_AGE_FOR_YOUNG_PEOPLE + 1, Person.Coolness.VERY_COOL),
-                new Person("Victor- In young threshold not cool", TOP_AGE_FOR_YOUNG_PEOPLE, Person.Coolness.NOT_COOL),
-                new Person("Victor- In young threshold cool", TOP_AGE_FOR_YOUNG_PEOPLE, Person.Coolness.COOL),
-                new Person("Victor- In young threshold very cool", TOP_AGE_FOR_YOUNG_PEOPLE, Person.Coolness.VERY_COOL),
-                new Person("Victor- Young not cool", TOP_AGE_FOR_YOUNG_PEOPLE - 1, Person.Coolness.NOT_COOL),
-                new Person("Victor- Young cool", TOP_AGE_FOR_YOUNG_PEOPLE - 1, Person.Coolness.COOL),
-                new Person("Victor- Young very cool", TOP_AGE_FOR_YOUNG_PEOPLE - 1, Person.Coolness.VERY_COOL)
-                                           );
-
-        out.println("Young people: " + PersonController.getNameOfYoungPeople(people, TOP_AGE_FOR_YOUNG_PEOPLE));
-        out.println("Young people (min level of coolness: not cool): " + PersonController.getNameOfYoungCoolPeople(people, TOP_AGE_FOR_YOUNG_PEOPLE, Person.Coolness.NOT_COOL));
-        out.println("Young people (min level of coolness: cool): " + PersonController.getNameOfYoungCoolPeople(people, TOP_AGE_FOR_YOUNG_PEOPLE, Person.Coolness.COOL));
-        out.println("Young people (min level of coolness: very cool): " + PersonController.getNameOfYoungCoolPeople(people, TOP_AGE_FOR_YOUNG_PEOPLE, Person.Coolness.COOL));
-    }
-
     private static void runGetLargestGroupInNumberSequence() {
         out.println("[] (expected 0): " + getLengthOfLargestGroupInSequence());
         out.println("[1] (expected 0): " + getLengthOfLargestGroupInSequence(1));
@@ -218,43 +182,6 @@ public final class Main {
         out.println("3, [1,1,1,4,4,4,7] (expected 2): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 4, 4, 4, 7));
         out.println("3, [1,1,7,1,4,4,4] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 7, 1, 4, 4, 4));
         out.println("3, [1,1,1,4,4,7,4] (expected 1): " + getNumberOfGroupsOfCustomSizeInSequence(3, 1, 1, 1, 4, 4, 7, 4));
-    }
-
-    private static void runWallProblemVariant1() {
-        out.println("bb: 0, sm: 0, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(0, 0, 0));
-        out.println("bb: 1, sm: 0, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(1, 0, 0));
-        out.println("bb: 0, sm: 1, w: 0 (expected true): " + canWeBuildAWallOfSizeFrom(0, 1, 0));
-        out.println("bb: 0, sm: 0, w: 1 (expected false): " + canWeBuildAWallOfSizeFrom(0, 0, 1));
-        out.println("bb: 1, sm: 0, w: 4 (expected false): " + canWeBuildAWallOfSizeFrom(1, 0, 4));
-        out.println("bb: 1, sm: 0, w: 5 (expected true): " + canWeBuildAWallOfSizeFrom(1, 0, 5));
-        out.println("bb: 1, sm: 0, w: 6 (expected false): " + canWeBuildAWallOfSizeFrom(1, 0, 6));
-        out.println("bb: 0, sm: 1, w: 1 (expected true): " + canWeBuildAWallOfSizeFrom(0, 1, 1));
-        out.println("bb: 0, sm: 1, w: 2 (expected false): " + canWeBuildAWallOfSizeFrom(0, 1, 2));
-        out.println("bb: 1, sm: 1, w: 4 (expected false): " + canWeBuildAWallOfSizeFrom(1, 1, 4));
-        out.println("bb: 1, sm: 1, w: 6 (expected true): " + canWeBuildAWallOfSizeFrom(1, 1, 6));
-        out.println("bb: 1, sm: 1, w: 7 (expected false): " + canWeBuildAWallOfSizeFrom(1, 1, 7));
-        out.println("bb: 1, sm: 1, w: 5 (expected true): " + canWeBuildAWallOfSizeFrom(1, 1, 5));
-        out.println("bb: 1, sm: 1, w: 1 (expected true): " + canWeBuildAWallOfSizeFrom(1, 1, 1));
-    }
-
-    private static void runWallProblemVariant2() {
-        int bbSize = 10;
-        int sbSize = 7;
-
-        out.println("w: 0 (expected [0, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 0)));
-        out.println("w: 0 (expected [0, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 0)));
-        out.println("w: 0 (expected [0, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 0)));
-        out.println("w: 1 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 1)));
-        out.println("w: 4 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 4)));
-        out.println("w: 10 (expected [1, 0): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 10)));
-        out.println("w: 11 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 11)));
-        out.println("w: 7 (expected [0, 1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 7)));
-        out.println("w: 2 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 2)));
-        out.println("w: 4 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 4)));
-        out.println("w: 17 (expected [1, 1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 17)));
-        out.println("w: 18 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 18)));
-        out.println("w: 10 (expected [1, 0]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 10)));
-        out.println("w: 19 (expected [-1, -1]): " + Arrays.toString(getNumberOfRequiredBricksToBuildAWallOfSize(bbSize, sbSize, 19)));
     }
 
     private static void runMostCommonWordProblem() {
