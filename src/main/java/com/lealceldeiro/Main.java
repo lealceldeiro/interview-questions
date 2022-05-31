@@ -5,7 +5,6 @@ import com.lealceldeiro.fibonacci.Fibonacci;
 import com.lealceldeiro.linkedlist.MLinkedList;
 import com.lealceldeiro.treeheight.Node;
 
-import static com.lealceldeiro.commonword.CommonWordController.findMostCommonWordIn;
 import static com.lealceldeiro.treeheight.TreeController.getTreeHeight;
 import static java.lang.System.err;
 import static java.lang.System.exit;
@@ -33,9 +32,6 @@ public final class Main {
         }
 
         switch (option) {
-            case 6:
-                runMostCommonWordProblem();
-                break;
             case 7:
                 runTreeHeightProblem();
                 break;
@@ -112,22 +108,6 @@ public final class Main {
         }
         out.println("case 2 - expected: 5671234, actual: " + rotated);
 
-    }
-
-    private static void runMostCommonWordProblem() {
-        out.println("'', '' (expected null): " + findMostCommonWordIn("", ""));
-        out.println("'a', 'a' (expected null): " + findMostCommonWordIn("a", "a"));
-        out.println("'A', 'a' (expected null): " + findMostCommonWordIn("A", "a"));
-        out.println("'a', 'A' (expected null): " + findMostCommonWordIn("a", "A"));
-        out.println("'a', 'b' (expected a): " + findMostCommonWordIn("a", "b"));
-        out.println("'a, b', 'b' (expected a): " + findMostCommonWordIn("a,b", "b"));
-        out.println("'a, b', 'a,b' (expected null): " + findMostCommonWordIn("a,b", "a,b"));
-        out.println("'a b', 'a b' (expected null): " + findMostCommonWordIn("a b", "a b"));
-        out.println("'a, b', 'a, b' (expected null): " + findMostCommonWordIn("a, b", "a, b"));
-        out.println("'a a b', 'x y' (expected a): " + findMostCommonWordIn("a a b", "x y"));
-        out.println("'a b a', 'x y' (expected a): " + findMostCommonWordIn("a b a", "x y"));
-        out.println("'b a a', 'x y' (expected a): " + findMostCommonWordIn("b a a", "x y"));
-        out.println("'a b', 'x y' (expected a): " + findMostCommonWordIn("a b", "x y"));
     }
 
     private static void runTreeHeightProblem() {
