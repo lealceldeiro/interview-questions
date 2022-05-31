@@ -1,5 +1,7 @@
 package com.lealceldeiro.personfilter;
 
+import java.util.Objects;
+
 public class Person {
     private final String name;
     private final int age;
@@ -20,7 +22,11 @@ public class Person {
     }
 
     boolean isYoung(int ageThreshold) {
-        return age <= ageThreshold;
+        return getAge() <= ageThreshold;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public enum Coolness {
@@ -38,5 +44,22 @@ public class Person {
             // I am cool if my level of coolness is equals or bigger than the requested level
             return coolnessIndicator >= coolnessLevel.coolnessIndicator;
         }
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Person person = (Person) o;
+        return getAge() == person.getAge() && getName().equals(person.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge());
     }
 }
