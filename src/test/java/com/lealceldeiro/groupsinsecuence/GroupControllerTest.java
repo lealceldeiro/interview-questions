@@ -24,13 +24,13 @@ class GroupControllerTest {
                 arguments(3, arr(1, 1, 5, 5, 3, 3, 3))
                          );
     }
-    private static int[] arr(int... v) {
+    private static Integer[] arr(Integer... v) {
         return v;
     }
 
     @ParameterizedTest
     @MethodSource("getLengthOfLargestGroupInSequenceSrc")
-    void getLengthOfLargestGroupInSequence(int expectedLength, int[] sequence) {
+    void getLengthOfLargestGroupInSequence(int expectedLength, Integer[] sequence) {
         assertEquals(expectedLength, GroupController.getLengthOfLargestGroupInSequence(sequence));
     }
 
@@ -53,7 +53,7 @@ class GroupControllerTest {
 
     @ParameterizedTest
     @MethodSource("getNumberOfGroupsInSequenceSrc")
-    void getNumberOfGroupsInSequence(int expectedNumber, int[] sequence) {
+    void getNumberOfGroupsInSequence(int expectedNumber, Integer[] sequence) {
         assertEquals(expectedNumber, GroupController.getNumberOfGroupsInSequence(sequence));
     }
 
@@ -88,7 +88,7 @@ class GroupControllerTest {
 
     @ParameterizedTest
     @MethodSource("getNumberOfGroupsOfCustomSizeInSequenceWithLengthSrc")
-    void getNumberOfGroupsOfCustomSizeInSequence(int expectedNumberOfGroups, int size, int[] sequence) {
+    void getNumberOfGroupsOfCustomSizeInSequence(int expectedNumberOfGroups, int size, Integer[] sequence) {
         assertEquals(expectedNumberOfGroups, GroupController.getNumberOfGroupsInSequence(size, sequence));
     }
 }

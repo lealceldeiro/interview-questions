@@ -13,7 +13,7 @@ public final class GroupController {
      *
      * @return An {@code int} indicating the length of the largest group.
      */
-    public static int getLengthOfLargestGroupInSequence(int... sequence) {
+    public static <T> int getLengthOfLargestGroupInSequence(T[] sequence) {
         int lengthOfLargestGroup = 0;
 
         int i = 0;
@@ -43,7 +43,7 @@ public final class GroupController {
      *
      * @return An {@code int} indicating the number of groups.
      */
-    public static int getNumberOfGroupsInSequence(int... sequence) {
+    public static <T> int getNumberOfGroupsInSequence(T[] sequence) {
         return getNumberOfGroupsInSequence(2, sequence);
     }
 
@@ -57,7 +57,7 @@ public final class GroupController {
      *
      * @return An {@code int} indicating the number of groups.
      */
-    public static int getNumberOfGroupsInSequence(int groupSize, int... sequence) {
+    public static <T> int getNumberOfGroupsInSequence(int groupSize, T[] sequence) {
         int numberOfGroups = 0;
 
         int i = 0;
