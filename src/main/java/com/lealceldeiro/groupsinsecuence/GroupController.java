@@ -20,7 +20,7 @@ public final class GroupController {
         while (i < sequence.length) {
             int lengthOfNthGroup = 0;
 
-            while (i < sequence.length - 1 && sequence[i] == sequence[i + 1]) {
+            while (i < sequence.length - 1 && sequence[i].equals(sequence[i + 1])) {
                 lengthOfNthGroup++;
                 i++;
             }
@@ -64,7 +64,7 @@ public final class GroupController {
         while (i < sequence.length) {
             int previousIndex = i;
 
-            while (i < sequence.length - 1 && sequence[i] == sequence[i + 1]) {
+            while (i < sequence.length - 1 && sequence[i].equals(sequence[i + 1])) {
                 i++;
             }
             i++;
