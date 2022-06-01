@@ -11,11 +11,9 @@ public final class TreeController {
      * @return {@code -1} if the node is null. Otherwise it will return the height of the three taking {@code node} as
      * the root of the tree.
      */
-    public static int getTreeHeight(Node<?> node) {
-        if (node == null) {
-            return -1;
-        }
-
-        return Math.max(getTreeHeight(node.getLeft()), getTreeHeight(node.getRight())) + 1;
+    public static <T> int getTreeHeight(Node<T> node) {
+        return node == null
+               ? -1
+               : Math.max(getTreeHeight(node.getLeft()), getTreeHeight(node.getRight())) + 1;
     }
 }

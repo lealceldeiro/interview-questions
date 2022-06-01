@@ -32,9 +32,6 @@ public final class Main {
         }
 
         switch (option) {
-            case 7:
-                runTreeHeightProblem();
-                break;
             case 8:
                 runCircularArray();
                 break;
@@ -108,23 +105,6 @@ public final class Main {
         }
         out.println("case 2 - expected: 5671234, actual: " + rotated);
 
-    }
-
-    private static void runTreeHeightProblem() {
-        Node<String> root = null;
-        out.println("null (expected -1): " + getTreeHeight(root));
-
-        root = new Node<>("");
-        out.println("root with no children (expected 0): " + getTreeHeight(root));
-
-        root = new Node<>("", new Node<>(""), null);
-        out.println("root with a left child (expected 1): " + getTreeHeight(root));
-
-        root = new Node<>("", null, new Node<>(""));
-        out.println("root with a right child (expected 1): " + getTreeHeight(root));
-
-        root = new Node<>("", null, new Node<>("", new Node<>(""), null));
-        out.println("root with a right child with left child (expected 2): " + getTreeHeight(root));
     }
 }
 
