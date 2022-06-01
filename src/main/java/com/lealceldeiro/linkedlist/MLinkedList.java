@@ -5,8 +5,16 @@ public class MLinkedList<E> {
         E data;
         MNode<E> next;
 
-        MNode(E data) { this.data = data; }
+        MNode(E data) {
+            this.data = data;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(data);
+        }
     }
+
     private MNode<E> head;
 
     public void add(E e) {
@@ -23,21 +31,41 @@ public class MLinkedList<E> {
     }
 
     public E nElementFromTail(int n) {
-        if (head == null) {
+        if (n == 0 || head == null) {
             return null;
         }
-        MNode<E> p1 = head;
-        MNode<E> p2 = head;
-        int i = n;
+        MNode<E> slow = head;
+        MNode<E> fast = head;
 
-        while (i-- > 0) {
-            p2 = p2.next;
-            if (p2 == null) { return null; }
+        while (n-- > 0) {
+            if (fast == null) {
+                return null;
+            }
+            fast = fast.next;
         }
-        while (p2 != null) {
-            p2 = p2.next;
-            p1 = p1.next;
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
         }
-        return p1.data;
+        return slow.data;
+    }
+
+    public static <T> MLinkedList<T> of(T... values) {
+        MLinkedList<T> linkedList = new MLinkedList<>();
+        for (T e : values) {
+            linkedList.add(e);
+        }
+        return linkedList;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder elements = new StringBuilder();
+        MNode<E> node = head;
+        while (node != null) {
+            elements.append(node);
+            node = node.next;
+        }
+        return "[" + elements + "]";
     }
 }
