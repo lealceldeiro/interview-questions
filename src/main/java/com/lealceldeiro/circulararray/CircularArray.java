@@ -9,6 +9,10 @@ public class CircularArray<E> implements Iterable<E> {
     private E[] values;
     private int head;
 
+    public CircularArray(Class<?> type) {
+        this(type, 0);
+    }
+
     @SuppressWarnings("unchecked")
     public CircularArray(Class<?> type, int capacity) {
         this.values = (E[]) Array.newInstance(type, capacity);
@@ -16,6 +20,9 @@ public class CircularArray<E> implements Iterable<E> {
 
     @SafeVarargs
     public CircularArray(E... values) {
+         if (values.length == 0) {
+             throw new IllegalArgumentException("For an empty collection you must specify the type");
+         }
         this.values = Arrays.copyOf(values, values.length);
     }
 
