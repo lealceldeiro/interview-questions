@@ -1,5 +1,6 @@
 package com.lealceldeiro.circulararray;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,8 +10,8 @@ public class CircularArray<E> implements Iterable<E> {
     private int head;
 
     @SuppressWarnings("unchecked")
-    public CircularArray(int capacity) {
-        this.values = (E[]) new Object[capacity];
+    public CircularArray(Class<?> type, int capacity) {
+        this.values = (E[]) Array.newInstance(type, capacity);
     }
 
     @SafeVarargs
@@ -18,8 +19,18 @@ public class CircularArray<E> implements Iterable<E> {
         this.values = Arrays.copyOf(values, values.length);
     }
 
-    protected E[] getValues() {
-        return values;
+    public E[] getValues() {
+        if (values.length <= 0) {
+            return values.clone();
+        }
+
+        @SuppressWarnings("unchecked")
+        E[] copy = (E[]) Array.newInstance(values[0].getClass(), values.length);
+        for (int i = 0; i < values.length; i++) {
+            copy[i] = get(i);
+        }
+
+        return copy;
     }
 
     public E get(int i) {
@@ -30,15 +41,14 @@ public class CircularArray<E> implements Iterable<E> {
     }
 
     public E set(int i, E value) {
-        if (i < 0 || i > values.length) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        int pos = offsetIdx(i);
-
-        E prev = values[pos];
-        values[pos] = value;
+        E prev = get(i);
+        values[offsetIdx(i)] = value;
 
         return prev;
+    }
+
+    public int size() {
+        return values.length;
     }
 
     public void rotate(int offset) {
@@ -49,13 +59,7 @@ public class CircularArray<E> implements Iterable<E> {
         if (offset < 0) {
             offset += values.length;
         }
-        return (head + offset) % values.length;
-    }
-
-    public static void print(Iterable<?> collection) {
-        for (Object e : collection) {
-            System.out.print(e.toString() + " ");
-        }
+        return values.length > 0 ? (head + offset) % values.length : 0;
     }
 
     @Override
@@ -64,7 +68,7 @@ public class CircularArray<E> implements Iterable<E> {
     }
 
     private static class CIterator<E> implements Iterator<E> {
-        CircularArray<E> collection;
+        private final CircularArray<E> collection;
         private int current = -1;
 
         CIterator(CircularArray<E> collection) {
