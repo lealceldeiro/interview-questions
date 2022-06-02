@@ -31,7 +31,10 @@ public final class StringUtil {
      *
      * @return {@code true} if {@code s} has all unique characters, {@code false} otherwise.
      *
-     * @see <a href="https://stackoverflow.com/a/12811293/5640649">This SO post</a>
+     * @see <a href="https://en.wikipedia.org/wiki/Bitwise_operation">Wikipedia</a>
+     * @see <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html">Oracle tutorial</a>
+     * @see <a href="https://stackoverflow.com/a/12811293/5640649">StackOverflow post</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22">JLS 15.22. Bitwise and Logical Operators </a>
      */
     public static boolean isUnique2(String s) {
         if (s == null) {
