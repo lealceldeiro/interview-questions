@@ -1,12 +1,15 @@
 package com.lealceldeiro.fibonacci;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class FibonacciTest {
@@ -29,7 +32,7 @@ class FibonacciTest {
     @MethodSource("nThNumberStartingFrom1")
     void nThNumberStartingFrom1(int nth, int expected) {
         Fibonacci fibonacci = new Fibonacci(nth + 1);
-        Assertions.assertEquals(expected, fibonacci.nThNumber(nth));
+        assertEquals(expected, fibonacci.nThNumber(nth));
     }
     private static Stream<Arguments> nThNumberStartingFrom0() {
         return Stream.of(
@@ -51,6 +54,22 @@ class FibonacciTest {
     @MethodSource("nThNumberStartingFrom0")
     void nThNumberStartingFrom0(int nth, int expected) {
         Fibonacci fibonacci = new Fibonacci(nth + 1, true);
-        Assertions.assertEquals(expected, fibonacci.nThNumber(nth));
+        assertEquals(expected, fibonacci.nThNumber(nth));
+    }
+
+    @Test
+    void nThNumberUpTo47ByDefault() {
+        assertTrue(new Fibonacci().nThNumber(47) > 0); // no exceptions thrown
+    }
+
+    @Test
+    void nThNumberUpAfter47WillGiveANegativeResultsBecauseOfIntegerBounds() {
+        assertTrue(new Fibonacci().nThNumber(48) < 0);
+    }
+
+    @Test
+    void nThNumberGreaterThanSpecifiedCacheThrowsException() {
+        var fibonacci = new Fibonacci(1);
+        assertThrows(IllegalArgumentException.class, () -> fibonacci.nThNumber(2));
     }
 }

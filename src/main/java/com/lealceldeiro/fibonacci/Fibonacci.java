@@ -1,11 +1,12 @@
 package com.lealceldeiro.fibonacci;
 
 public class Fibonacci {
+    private static final int TOP_DEFAULT_NTH_NUMBER = 100;
     private final int[] cache;
-    private boolean startFromZero;
+    private final boolean startFromZero;
 
     public Fibonacci() {
-        this(100);
+        this(TOP_DEFAULT_NTH_NUMBER);
     }
 
     public Fibonacci(int topNthNumber) {
