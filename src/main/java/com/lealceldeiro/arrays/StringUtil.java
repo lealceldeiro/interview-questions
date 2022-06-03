@@ -1,7 +1,9 @@
 package com.lealceldeiro.arrays;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public final class StringUtil {
     private StringUtil() {
@@ -50,5 +52,43 @@ public final class StringUtil {
             checker |= (1 << val);
         }
         return true;
+    }
+
+    /**
+     * Given two strings, returns if one is a permutation of the other.
+     *
+     * @param source The source string to check if it's a permutation of {@code target}.
+     * @param target The target string to check if {@code source} is a permutation of this value.
+     *
+     * @return {@code true} if {@code source} is a permutation of {@code target}, {@code false} otherwise.
+     */
+    public static boolean isPermutation(String source, String target) {
+        if (source == null || target == null || source.length() != target.length()) {
+            return false;
+        }
+        Map<Character, Integer> wordsCount = wordsCount(source);
+
+        for (int i = 0; i < target.length(); i++) {
+            Character c = target.charAt(i);
+            Integer wCount = wordsCount.get(c);
+            if (wCount == null) {
+                return false;
+            }
+            wordsCount.put(c, wCount - 1);
+            if (wordsCount.get(c) == 0) {
+                wordsCount.remove(c);
+            }
+        }
+        return wordsCount.isEmpty();
+    }
+
+    private static Map<Character, Integer> wordsCount(final String source) {
+        Map<Character, Integer> wordsCount = new HashMap<>();
+        for (int i = 0; i < source.length(); i++) {
+            Character c = source.charAt(i);
+            Integer wCount = wordsCount.getOrDefault(c, 0);
+            wordsCount.put(c, wCount + 1);
+        }
+        return wordsCount;
     }
 }

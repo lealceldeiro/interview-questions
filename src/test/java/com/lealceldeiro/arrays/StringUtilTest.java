@@ -45,4 +45,32 @@ class StringUtilTest {
         assertEquals(expected, StringUtil.isUnique1(s));
         assertEquals(expected, StringUtil.isUnique2(s));
     }
+
+    private static Stream<Arguments> isPermutationSrc() {
+        return Stream.of(
+                arguments("", "", true),
+                arguments(null, "", false),
+                arguments("", null, false),
+                arguments(null, null, false),
+                arguments("a", "a", true),
+                arguments("a", "b", false),
+                arguments("ab", "ab", true),
+                arguments("ab", "ba", true),
+                arguments("aba", "aba", true),
+                arguments("aba", "aab", true),
+                arguments("aba", "baa", true),
+                arguments("baa", "aba", true),
+                arguments("aab", "aba", true),
+                arguments("ab", "bba", false),
+                arguments("ab", "abb", false),
+                arguments("abb", "ab", false),
+                arguments("bba", "ab", false)
+                        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("isPermutationSrc")
+    void isPermutation(String source, String target, boolean expected) {
+        assertEquals(expected, StringUtil.isPermutation(source, target));
+    }
 }
