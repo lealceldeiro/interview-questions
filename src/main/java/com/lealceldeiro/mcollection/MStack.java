@@ -1,4 +1,4 @@
-package com.lealceldeiro.stacks;
+package com.lealceldeiro.mcollection;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
