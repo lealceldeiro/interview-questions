@@ -91,4 +91,59 @@ public final class StringUtil {
         }
         return wordsCount;
     }
+
+    /**
+     * Replaces all spaces in a string with {@code %20}.
+     * <p>
+     * Example:
+     * <p>
+     * {@code urlFrom("   Mr John Smith   ")} will return {@code "Mr%20John%20Smith"}
+     *
+     * @param s String to URLfy.
+     *
+     * @return The String with all spaces replaced by {@code %20};
+     */
+    public static String urlFromWithRegex(String s) {
+        if (s == null) {
+            return null;
+        }
+        return s.trim().replaceAll(" +", "%20");
+    }
+
+    /**
+     * Replaces all spaces in a string with {@code %20} without using regex.
+     * <p>
+     * Example:
+     * <p>
+     * {@code urlFrom("   Mr John Smith   ")} will return {@code "Mr%20John%20Smith"}
+     *
+     * @param s String to URLfy.
+     *
+     * @return The String with all spaces replaced by {@code %20};
+     */
+    public static String urlFrom(String s) {
+        if (s == null) {
+            return null;
+        }
+        String trimmed = s.trim();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < trimmed.length(); i++) {
+            var c = trimmed.charAt(i);
+            sb.append(c == ' ' ? "%20" : c);
+            i = newPointerIfSpaceChar(i, c, trimmed);
+        }
+        return sb.toString();
+    }
+
+    private static int newPointerIfSpaceChar(int i, char c, String s) {
+        int prevI = i;
+        while (c == ' ' && i < s.length()) {
+            c = s.charAt(i++);
+        }
+        if (prevI != i) {
+            i -= 2;
+        }
+        return i;
+    }
 }

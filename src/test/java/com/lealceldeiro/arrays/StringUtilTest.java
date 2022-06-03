@@ -73,4 +73,22 @@ class StringUtilTest {
     void isPermutation(String source, String target, boolean expected) {
         assertEquals(expected, StringUtil.isPermutation(source, target));
     }
+
+    private static Stream<Arguments> URLfySrc() {
+        return Stream.of(
+                arguments("Mr John Smith   ", "Mr%20John%20Smith"),
+                arguments("   Mr John Smith   ", "Mr%20John%20Smith"),
+                arguments("   Mr    John    Smith   ", "Mr%20John%20Smith"),
+                arguments("Mr    John    Smith", "Mr%20John%20Smith"),
+                arguments("", ""),
+                arguments(null, null)
+                        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("URLfySrc")
+    void URLfy(String s, String expected) {
+        assertEquals(expected, StringUtil.urlFromWithRegex(s));
+        assertEquals(expected, StringUtil.urlFrom(s));
+    }
 }
