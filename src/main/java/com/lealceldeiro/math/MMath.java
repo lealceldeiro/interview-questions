@@ -20,7 +20,7 @@ public final class MMath {
      */
     public static double sqrt(double n, int maximumFractionDigits) {
         if (maximumFractionDigits < 0) {
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
         }
         return n < 0 ? -1 : sqrt(n, maximumFractionDigits, 0, n);
     }

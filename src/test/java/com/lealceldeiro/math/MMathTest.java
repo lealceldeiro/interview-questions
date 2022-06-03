@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.RoundingMode;
 import java.security.SecureRandom;
@@ -14,6 +15,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class MMathTest {
@@ -56,5 +58,16 @@ class MMathTest {
     @Test
     void sqrt() {
         assertEquals(7, MMath.sqrt(49, 0));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -5, -1453})
+    void sqrtOfNegativeNumberReturnsMinus1(int n) {
+        assertEquals(-1, MMath.sqrt(n, 0));
+    }
+
+    @Test
+    void sqrtWithNegativeMaximumFractionDigitsThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> MMath.sqrt(49, -1));
     }
 }
