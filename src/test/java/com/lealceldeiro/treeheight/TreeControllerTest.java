@@ -1,8 +1,10 @@
 package com.lealceldeiro.treeheight;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -25,5 +27,11 @@ class TreeControllerTest {
     @MethodSource("getTreeHeightSrc")
     void getTreeHeight(int expected, Node<?> rootNode) {
         assertEquals(expected, TreeController.getTreeHeight(rootNode));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 5, 7, 9})
+    void nodeGetDataReturnsOK(int data) {
+        assertEquals(data, new Node<>(data).getData());
     }
 }
