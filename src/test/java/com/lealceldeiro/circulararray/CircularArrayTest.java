@@ -4,12 +4,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class CircularArrayTest {
@@ -102,5 +106,23 @@ class CircularArrayTest {
         }
         assertArrayEquals(expected, actual,
                           "expected: " + Arrays.toString(expected) + ", actual: " + Arrays.toString(actual));
+    }
+
+    @Test
+    void emptyArrayWithoutSpecifyingTypeThrowsException() {
+        assertThrows(IllegalArgumentException.class, CircularArray<Integer>::new);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 100})
+    void callToGetWithInvalidIndexThrowsException(int index) {
+        var array = new CircularArray<>(1, 2);
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> array.get(index));
+    }
+    @Test
+    void callingIteratornextonEmptyArrayThrowsException() {
+        Iterable<Object> array = new CircularArray<>(Integer.class);
+        var iterator = array.iterator();
+        assertThrows(NoSuchElementException.class, iterator::next);
     }
 }
