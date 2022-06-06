@@ -26,16 +26,16 @@ public final class MMath {
     }
 
     public static double sqrt(double n, int maximumFractionDigits, double start, double end) {
-        double candidate = (start + end) / 2;
-        double product = candidate * candidate;
+        double iSqrt = (start + end) / 2;
+        double iProduct = iSqrt * iSqrt;
 
-        if (areCloseEnough(n, product, maximumFractionDigits)) {
-            return valueUptoMaximumFractionDigits(candidate, maximumFractionDigits);
+        if (areCloseEnough(n, iProduct, maximumFractionDigits)) {
+            return valueUptoMaximumFractionDigits(iSqrt, maximumFractionDigits);
         }
 
-        start = product > n ? start : candidate;
-        end = product > n ? candidate : end;
-        return sqrt(n, maximumFractionDigits, start, end);
+        return iProduct > n
+               ? sqrt(n, maximumFractionDigits, start, iSqrt)
+               : sqrt(n, maximumFractionDigits, iSqrt, end);
     }
 
     private static boolean areCloseEnough(double n, double product, int maximumFractionDigits) {
