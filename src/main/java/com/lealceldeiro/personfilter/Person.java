@@ -40,22 +40,22 @@ public class Person {
             this.coolnessIndicator = coolnessIndicator;
         }
 
-        boolean isCool (Coolness coolnessLevel) {
+        boolean isCool(Coolness coolnessLevel) {
             // I am cool if my level of coolness is equals or bigger than the requested level
             return coolnessIndicator >= coolnessLevel.coolnessIndicator;
         }
     }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Person)) {
             return false;
         }
-        Person person = (Person) o;
-        return getAge() == person.getAge() && getName().equals(person.getName());
+        Person that = (Person) o;
+        return Objects.equals(getName(), that.getName()) && Objects.equals(getAge(), that.getAge());
     }
 
     @Override
