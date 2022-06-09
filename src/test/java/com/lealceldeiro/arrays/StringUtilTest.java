@@ -91,4 +91,37 @@ class StringUtilTest {
         assertEquals(expected, StringUtil.urlFromWithRegex(s));
         assertEquals(expected, StringUtil.urlFrom(s));
     }
+
+    private static Stream<Arguments> isPalindromePermutationSrc() {
+        return Stream.of(
+                arguments(null, false),
+                arguments("", true),
+                arguments("Tact Coa", true),
+                arguments("taco cat", true),
+                arguments("atco cta", true),
+                arguments("11", true),
+                arguments("aa", true),
+                arguments("abba", true),
+                arguments("abcba", true),
+                arguments("ab1ba", true),
+                arguments("xab1bax", true),
+                arguments("xabx1ba", true),
+                arguments("xaxbx1 xba", true),
+                arguments("somos o no somos", true),
+                arguments("o somos no somos", true),
+                arguments("somos no somoso ", true),
+                arguments("o no somos somos", true),
+                arguments("somos somoso no ", true),
+                arguments("somossomos o no ", true),
+                arguments("s1omossomos o no ", false),
+                arguments("somossomosc o no ", false),
+                arguments("somossomos o no o", false)
+                        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("isPalindromePermutationSrc")
+    void isPalindromePermutation(String s, boolean expected) {
+        assertEquals(expected, StringUtil.isPalindromePermutation(s));
+    }
 }

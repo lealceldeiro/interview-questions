@@ -3,6 +3,7 @@ package com.lealceldeiro.arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 
 public final class StringUtil {
@@ -145,5 +146,38 @@ public final class StringUtil {
             i -= 2;
         }
         return i;
+    }
+
+    /**
+     * Checks if a given a string is a permutation of a palindrome. A palindrome is a word or phrase that is the same
+     * forwards and backwards. A permutation is a rearrangement of letters. The palindrome does not need to be limited
+     * to just dictionary words.
+     *
+     * @return {@code true} if the given string is a permutation of a palindrome, {@code false} otherwise.
+     */
+    public static boolean isPalindromePermutation(String s) {
+        if (s == null) {
+            return false;
+        }
+
+        s = s.replace(" ", "").toLowerCase(Locale.ENGLISH);
+        Map<Character, Integer> count = new HashMap<>();
+        Integer letterCount;
+        Character iChar;
+        for (int i = 0; i < s.length(); i++) {
+            iChar = s.charAt(i);
+            letterCount = count.get(iChar);
+            if (letterCount == null) {
+                count.put(iChar, 1);
+            } else {
+                if (letterCount == 1) {
+                    count.remove(iChar);
+                } else {
+                    count.put(iChar, letterCount - 1);
+                }
+            }
+        }
+
+        return count.size() <= 1;
     }
 }
