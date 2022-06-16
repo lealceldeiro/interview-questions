@@ -180,4 +180,39 @@ public final class StringUtil {
 
         return count.size() <= 1;
     }
+
+    /**
+     * There are three types of edits that can be performed on strings: insert a character,
+     * remove a character, or replace a character. Given two strings, this checks if they are one edit (or zero edits)
+     * away.
+     *
+     * @return {@code true} if they are, {@code false} otherwise.
+     */
+    public static boolean isOneAway(String s1, String s2) {
+        if (s1 == null && s2 == null) {
+            return true;
+        }
+        if (s1 == null || s2 == null) {
+            return false;
+        }
+        Map<Character, Integer> count = new HashMap<>();
+        Character c;
+        for (int i = 0; i < s1.length(); i++) {
+            c = s1.charAt(i);
+            count.put(c, count.getOrDefault(c,0) + 1);
+        }
+        int diff = 0;
+        for (int i = 0; i < s2.length(); i++) {
+            c = s2.charAt(i);
+            if (count.get(c) == null && ++diff > 1) {
+                return false;
+            } else if (count.get(c) != null) {
+                count.put(c, count.get(c) - 1);
+                if (count.get(c) == 0) {
+                    count.remove(c);
+                }
+            }
+        }
+        return count.values().stream().mapToInt(Integer::intValue).sum() <= 1;
+    }
 }

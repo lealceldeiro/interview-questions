@@ -124,4 +124,42 @@ class StringUtilTest {
     void isPalindromePermutation(String s, boolean expected) {
         assertEquals(expected, StringUtil.isPalindromePermutation(s));
     }
+
+    private static Stream<Arguments> isOneAwaySrc() {
+        return Stream.of(
+                arguments(null, null, true),
+                arguments("", "", true),
+                arguments("a", "", true),
+                arguments("ab", "", false),
+                arguments("ab", "ac", true),
+                arguments("ab", "abc", true),
+                arguments("ab", "abcd", false),
+                arguments("ab", "cd", false),
+                arguments("ab", "ab", true),
+                arguments("pale", "ple", true),
+                arguments("pales", "pale", true),
+                arguments("pale", "bale", true),
+                arguments("ab", "cde", false),
+                arguments("pale", "bae", false),
+                // flip
+                arguments("", "a", true),
+                arguments("", "ab", false),
+                arguments("ac", "ab", true),
+                arguments("abc", "ab", true),
+                arguments("abcd", "ab", false),
+                arguments("cd", "ab", false),
+                arguments("ab", "ab", true),
+                arguments("ple", "pale", true),
+                arguments("pale", "pales", true),
+                arguments("bale", "pale", true),
+                arguments("cde", "ab", false),
+                arguments("bae", "pale", false)
+                        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("isOneAwaySrc")
+    void isOneAway(String s1, String s2, boolean expected) {
+        assertEquals(expected, StringUtil.isOneAway(s1, s2));
+    }
 }
