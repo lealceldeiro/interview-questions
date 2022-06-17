@@ -142,6 +142,8 @@ class StringUtilTest {
                 arguments("pale", "bale", true),
                 arguments("ab", "cde", false),
                 arguments("pale", "bae", false),
+                arguments("abcde", "acde", true),
+                arguments("abcde", "axde", false),
                 // flip
                 arguments("", "a", true),
                 arguments("", "ab", false),
@@ -155,7 +157,9 @@ class StringUtilTest {
                 arguments("pale", "pales", true),
                 arguments("bale", "pale", true),
                 arguments("cde", "ab", false),
-                arguments("bae", "pale", false)
+                arguments("bae", "pale", false),
+                arguments("acde", "abcde", true),
+                arguments( "axde","abcde", false)
                         );
     }
 
