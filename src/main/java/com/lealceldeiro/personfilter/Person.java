@@ -62,4 +62,12 @@ public class Person {
     public int hashCode() {
         return Objects.hash(getName(), getAge());
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+               "name='" + name + '\'' +
+               ", age=" + age +
+               '}';
+    }
 }

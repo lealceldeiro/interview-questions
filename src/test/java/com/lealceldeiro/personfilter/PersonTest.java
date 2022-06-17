@@ -47,7 +47,7 @@ class PersonTest {
         Person person1 = new Person(sameName, sameAge, Person.Coolness.NOT_COOL);
         Person person2 = new Person(sameName, sameAge, Person.Coolness.COOL);
         Person person3 = new Person(sameName, sameAge, Person.Coolness.VERY_COOL);
-        Person person4 = new Person(sameName, age(), Person.Coolness.COOL);
+        Person person4 = new Person(sameName, sameAge + 1, Person.Coolness.COOL);
         Person person5 = new Person(name(), sameAge, Person.Coolness.COOL);
         Object person6 = new Object();
 
@@ -57,11 +57,11 @@ class PersonTest {
         assertEquals(person1.hashCode(), person2.hashCode());
         assertEquals(person1, person3);
         assertEquals(person1.hashCode(), person3.hashCode());
-        assertNotEquals(person1, person4);
+        assertNotEquals(person1, person4, "Expected " + person1 + " to not be equal to " + person4);
         assertNotEquals(person1.hashCode(), person4.hashCode());
-        assertNotEquals(person1, person5);
+        assertNotEquals(person1, person5, "Expected " + person1 + " to not be equal to " + person5);
         assertNotEquals(person1.hashCode(), person5.hashCode());
-        assertNotEquals(person1, person6);
+        assertNotEquals(person1, person6, "Expected " + person1 + " to not be equal to " + person6);
         assertNotEquals(person1.hashCode(), person6.hashCode());
     }
 }
