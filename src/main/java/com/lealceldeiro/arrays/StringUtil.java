@@ -195,24 +195,37 @@ public final class StringUtil {
         if (s1 == null || s2 == null) {
             return false;
         }
-        Map<Character, Integer> count = new HashMap<>();
-        Character c;
-        for (int i = 0; i < s1.length(); i++) {
-            c = s1.charAt(i);
-            count.put(c, count.getOrDefault(c,0) + 1);
+        if (s1.length() == s2.length()) {
+            return isThereTopOneCharReplacement(s1, s2);
         }
-        int diff = 0;
-        for (int i = 0; i < s2.length(); i++) {
-            c = s2.charAt(i);
-            if (count.get(c) == null && ++diff > 1) {
-                return false;
-            } else if (count.get(c) != null) {
-                count.put(c, count.get(c) - 1);
-                if (count.get(c) == 0) {
-                    count.remove(c);
+        if (s1.length() + 1 == s2.length()) {
+            return isThereTopOneCharAdded(s2, s1);
+        }
+        return s1.length() == s2.length() + 1
+               && isThereTopOneCharAdded(s1, s2);
+    }
+
+    private static boolean isThereTopOneCharAdded(String biggerString, String smallerString) {
+        int c = 0;
+        int j = 0;
+        for (int i = 0; i < smallerString.length(); i++) {
+            if (biggerString.charAt(j++) != smallerString.charAt(i)) {
+                if (++c > 1) {
+                    return false;
                 }
+                j++;
             }
         }
-        return count.values().stream().mapToInt(Integer::intValue).sum() <= 1;
+        return true;
+    }
+
+    private static boolean isThereTopOneCharReplacement(String s1, String s2) {
+        int c = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i) && ++c > 1) {
+                return false;
+            }
+        }
+        return true;
     }
 }
