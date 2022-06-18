@@ -206,17 +206,15 @@ public final class StringUtil {
     }
 
     private static boolean isThereTopOneCharAdded(String biggerString, String smallerString) {
-        int c = 0;
         int j = 0;
         int i = 0;
         while (i < smallerString.length()) {
-            if (biggerString.charAt(j++) != smallerString.charAt(i)) {
-                if (++c > 1) {
+            if (biggerString.charAt(j++) != smallerString.charAt(i++)) {
+                if (j != i) {
                     return false;
                 }
                 i--;
             }
-            i++;
         }
         return true;
     }
