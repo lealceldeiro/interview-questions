@@ -50,6 +50,7 @@ public class MLinkedList<E> {
         return slow.data;
     }
 
+    @SafeVarargs
     public static <T> MLinkedList<T> of(T... values) {
         MLinkedList<T> linkedList = new MLinkedList<>();
         for (T e : values) {

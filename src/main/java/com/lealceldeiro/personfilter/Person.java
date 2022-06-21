@@ -51,10 +51,9 @@ public class Person {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Person)) {
+        if (!(o instanceof Person that)) {
             return false;
         }
-        Person that = (Person) o;
         return Objects.equals(getName(), that.getName()) && Objects.equals(getAge(), that.getAge());
     }
 

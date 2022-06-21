@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public final class StringUtil {
     private StringUtil() {
@@ -21,12 +22,7 @@ public final class StringUtil {
         }
         var length = s.length();
         Collection<Character> chars = new HashSet<>(length);
-        for (int i = 0; i < length; i++) {
-            if (!chars.add(s.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+        return IntStream.range(0, length).allMatch(i -> chars.add(s.charAt(i)));
     }
 
     /**
@@ -83,7 +79,7 @@ public final class StringUtil {
         return wordsCount.isEmpty();
     }
 
-    private static Map<Character, Integer> wordsCount(final String source) {
+    private static Map<Character, Integer> wordsCount(String source) {
         Map<Character, Integer> wordsCount = new HashMap<>();
         for (int i = 0; i < source.length(); i++) {
             Character c = source.charAt(i);
@@ -138,14 +134,14 @@ public final class StringUtil {
     }
 
     private static int newPointerIfSpaceChar(int i, char c, String s) {
-        int prevI = i;
-        while (c == ' ' && i < s.length()) {
-            c = s.charAt(i++);
+        int pivot = i;
+        while (c == ' ' && pivot < s.length()) {
+            c = s.charAt(pivot++);
         }
-        if (prevI != i) {
-            i -= 2;
+        if (pivot != i) {
+            pivot -= 2;
         }
-        return i;
+        return pivot;
     }
 
     /**
@@ -162,11 +158,9 @@ public final class StringUtil {
 
         s = s.replace(" ", "").toLowerCase(Locale.ENGLISH);
         Map<Character, Integer> count = new HashMap<>();
-        Integer letterCount;
-        Character iChar;
         for (int i = 0; i < s.length(); i++) {
-            iChar = s.charAt(i);
-            letterCount = count.get(iChar);
+            Character iChar = s.charAt(i);
+            Integer letterCount = count.get(iChar);
             if (letterCount == null) {
                 count.put(iChar, 1);
             } else {

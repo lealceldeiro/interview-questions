@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static java.util.stream.Collectors.toList;
-
 public final class PersonController {
     private PersonController() {
     }
@@ -24,7 +22,7 @@ public final class PersonController {
 
     private static <R> List<R> getPropertyFromList(Collection<? extends Person> list,
                                                    Predicate<? super Person> predicate,
-                                                   Function<? super Person, ? extends R> mapperFunction) {
-        return list.stream().filter(predicate).map(mapperFunction).collect(toList());
+                                                   Function<? super Person, R> mapperFunction) {
+        return list.stream().filter(predicate).map(mapperFunction).toList();
     }
 }
