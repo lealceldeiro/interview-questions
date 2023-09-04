@@ -7,7 +7,7 @@
  * height counting it is not needed that a node has two children, if the node has only one child node (left or right)
  * the height count +1.
  *
- * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
+ * @author Asiel Leal Celdeiro | 15990580+lealceldeiro@users.noreply.github.com
  * @version 0.1
  */
 package com.lealceldeiro.treeheight;

@@ -3,7 +3,7 @@
  *
  * <p> Given a string with some words separated by spaces and commas, find the word that is repeated the most in it.
  *
- * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
+ * @author Asiel Leal Celdeiro | 15990580+lealceldeiro@users.noreply.github.com
  * @version 0.1
  */
 package com.lealceldeiro.commonword;

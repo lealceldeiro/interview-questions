@@ -5,7 +5,7 @@
  *
  * So, given the number of available BB and SM, can we construct a all of a given size in meters?
  *
- * @author Asiel Leal Celdeiro | lealceldeiro@gmail.com
+ * @author Asiel Leal Celdeiro | 15990580+lealceldeiro@users.noreply.github.com
  * @version 0.1
  */
 package com.lealceldeiro.wall;
