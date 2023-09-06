@@ -1,8 +1,8 @@
 package com.lealceldeiro.queue;
 
-public final class Queue<T> {
-    private final T[] elements;
-    private final T nullValue;
+public final class Queue<E> {
+    private final E[] elements;
+    private final E nullValue;
     private int count;
     private int tailIndex;
     private int headIndex;
@@ -11,13 +11,13 @@ public final class Queue<T> {
         this(capacity, null);
     }
 
-    public Queue(int capacity, T nullValue) {
+    public Queue(int capacity, E nullValue) {
         this.nullValue = nullValue;
-        this.elements = (T[]) new Object[capacity];
+        this.elements = (E[]) new Object[capacity];
         count = 0;
     }
 
-    public T push(T element) {
+    public E add(E element) {
         if (isFull()) {
             throw new FullException();
         }
@@ -31,18 +31,18 @@ public final class Queue<T> {
         return (index + 1) % elements.length;
     }
 
-    public T pop() {
+    public E remove() {
         if (isEmpty()) {
             throw new EmptyException();
         }
-        T e = elements[headIndex];
+        E e = elements[headIndex];
         elements[headIndex] = nullValue;
         headIndex = nextIndex(headIndex);
         --count;
         return e;
     }
 
-    public T peek() {
+    public E peek() {
         return isEmpty() ? nullValue : elements[headIndex];
     }
 

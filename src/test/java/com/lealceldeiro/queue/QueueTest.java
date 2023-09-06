@@ -14,52 +14,52 @@ class QueueTest {
     }
 
     @Test
-    void pushingOneElementReturnsTheElement() {
-        assertEquals(1, queue.push(1));
+    void addingOneElementReturnsTheElement() {
+        assertEquals(1, queue.add(1));
     }
 
     @Test
-    void afterPushingOneElementTheQueueIsNotEmpty() {
-        queue.push(1);
+    void afterAddingOneElementTheQueueIsNotEmpty() {
+        queue.add(1);
         assertFalse(queue.isEmpty());
         assertEquals(1, queue.size());
     }
 
     @Test
-    void pushAndPopReturnsTheElement() {
-        queue.push(1);
-        assertEquals(1, queue.pop());
+    void addAndRemoveReturnsTheElement() {
+        assertEquals(1, queue.add(1));
+        assertEquals(1, queue.remove());
     }
 
     @Test
-    void afterPushingOneElementAndPoppingItTheQueueIsEmpty() {
-        queue.push(23);
+    void afterAddingOneElementAndRemovingItTheQueueIsEmpty() {
+        queue.add(23);
         assertFalse(queue.isEmpty());
         assertEquals(1, queue.size());
 
-        queue.pop();
+        queue.remove();
         assertTrue(queue.isEmpty());
         assertEquals(0, queue.size());
     }
 
     @Test
-    void popReturnsTheElement() {
-        queue.push(99);
-        assertEquals(99, queue.pop());
+    void removeReturnsTheElement() {
+        queue.add(99);
+        assertEquals(99, queue.remove());
     }
 
     @Test
-    void poppingAnEmptyQueueThrowsEmptyException() {
-        assertThrows(Queue.EmptyException.class, new Queue<>(0)::pop);
+    void removingAnEmptyQueueThrowsEmptyException() {
+        assertThrows(Queue.EmptyException.class, new Queue<>(0)::remove);
     }
 
     @Test
-    void pushingAFullQueueThrowsFullException() {
+    void addingAFullQueueThrowsFullException() {
         Queue<Integer> fullQueue = new Queue<>(3);
-        fullQueue.push(77);
-        fullQueue.push(88);
-        fullQueue.push(99);
-        assertThrows(Queue.FullException.class, () -> fullQueue.push(11));
+        fullQueue.add(77);
+        fullQueue.add(88);
+        fullQueue.add(99);
+        assertThrows(Queue.FullException.class, () -> fullQueue.add(11));
     }
 
     @Test
@@ -69,7 +69,7 @@ class QueueTest {
 
     @Test
     void peekDoesNotRemoveTheElement() {
-        queue.push(99);
+        queue.add(99);
         assertFalse(queue.isEmpty());
         assertEquals(1, queue.size());
 
@@ -89,23 +89,23 @@ class QueueTest {
     }
 
     @Test
-    void afterPushing1And2And3ThenPoppingReturns1And2And3() {
-        queue.push(1);
-        queue.push(2);
-        queue.push(3);
+    void afterAdding1And2And3ThenRemovingReturns1And2And3() {
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
 
-        assertEquals(1, queue.pop());
-        assertEquals(2, queue.pop());
-        assertEquals(3, queue.pop());
+        assertEquals(1, queue.remove());
+        assertEquals(2, queue.remove());
+        assertEquals(3, queue.remove());
     }
 
     @Test
-    void afterPushingXAndYAndZThenPeekingReturnsX() {
-        queue.push(1);
-        queue.push(2);
-        queue.push(3);
-        queue.push(99);
-        queue.push(88);
+    void afterAddingXAndYAndZThenPeekingReturnsX() {
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+        queue.add(99);
+        queue.add(88);
 
         assertEquals(1, queue.peek());
         assertEquals(1, queue.peek());
@@ -115,15 +115,15 @@ class QueueTest {
     }
 
     @Test
-    void afterPushingXAndYAndZThenPoppingReturnsReturnsXAndPeekingReturnsY() {
-        queue.push(1);
-        queue.push(2);
-        queue.push(3);
-        queue.push(99);
-        queue.push(88);
+    void afterAddingXAndYAndZThenRemovingReturnsReturnsXAndPeekingReturnsY() {
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+        queue.add(99);
+        queue.add(88);
 
         assertEquals(1, queue.peek());
-        assertEquals(1, queue.pop());
+        assertEquals(1, queue.remove());
         assertEquals(2, queue.peek());
         assertEquals(2, queue.peek());
         assertEquals(2, queue.peek());
