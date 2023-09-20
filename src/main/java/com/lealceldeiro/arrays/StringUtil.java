@@ -21,7 +21,7 @@ public final class StringUtil {
             return false;
         }
         var length = s.length();
-        Collection<Character> chars = new HashSet<>(length);
+        Collection<Character> chars = HashSet.newHashSet(length);
         return IntStream.range(0, length).allMatch(i -> chars.add(s.charAt(i)));
     }
 
